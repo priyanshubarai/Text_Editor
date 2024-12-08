@@ -14,6 +14,12 @@ export default function TextAnalyse(props) {
                 return 0;
             }
         })
+        if(props.text!==''){
+            document.querySelector(".preview").classList.remove("hidden");
+        }
+        else{
+            document.querySelector(".preview").classList.remove("hidden");
+        }
     }
 
     function UpperCase(event) {
@@ -46,7 +52,7 @@ export default function TextAnalyse(props) {
         <div className="box m-3 grid justify-items-center h-full">
         
         <form className="w-3/4">
-        <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        <div className="w-full mb-4 border border-gray-400 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <label htmlFor="comment" className="sr-only">Your comment</label>
                 {/* value is set as text , when text state is changed the value automatically gets updated */}
@@ -77,7 +83,7 @@ export default function TextAnalyse(props) {
             {Math.floor((word * 0.008)*100)/100} minutes requied to read
 
         </div>
-        <div className="preview w-3/4 ">
+        <div className="preview w-3/4 hidden">
             <h1 className="text-3xl py-4 underline">Preview</h1>
             <pre>
             {props.text}

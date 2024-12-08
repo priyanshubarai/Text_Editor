@@ -5,6 +5,7 @@ import './App.css'
 import TextAnalyse from './components/Compo';
 import Header from './components/Header';
 import Alert from './components/Alert/Alert';
+import Navbar from './components/NavBar.jsx/Navbar';
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <div className='dark:bg-slate-900 dark:text-white min-h-screen'>
     <Alert setText = {setText}/>
+    <Navbar/>
     <Header/>
     <TextAnalyse text={text} setText = {setText}/>
     </div>
