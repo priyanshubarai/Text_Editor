@@ -1,17 +1,15 @@
-import { useState } from "react";       //req for using useState hook
+import { useState } from "react"; //req for using useState hook
+
 
 export default function TextAnalyse(props) {
-
-    // const text_area = document.querySelector("#comment");
     
-    const [text , setText] = useState('');      //initiating a state hook
     const [word , setWord] = useState(0);
 
     function handleChange(event) {
-        setText(event.target.value);    //sets the text to a new value if text_area is changed
+        props.setText(event.target.value);    //sets the text to a new value if text_area is changed
         setWord(()=>{
-            if(text.trim() !== ""){
-                return text.trim().split(/\s+/).length;
+            if(props.text.trim() !== ""){
+                return props.text.trim().split(/\s+/).length;
             }else{
                 return 0;
             }
@@ -20,30 +18,28 @@ export default function TextAnalyse(props) {
 
     function UpperCase(event) {
         event.preventDefault();
-        setText(text.toUpperCase());       
+        props.setText(props.text.toUpperCase());       
     }
     
     function LowerCase(event) {
         event.preventDefault();
-        setText(text.toLowerCase());
+        props.setText(props.text.toLowerCase());
     }
 
     function removeSpace(event) {
         event.preventDefault();
-        setText(()=>{
+        props.setText(()=>{
             setWord(1);
-            return Array.from(text).filter((i) => i !== ' ').join("");
+            return Array.from(props.text).filter((i) => i !== ' ').join("");
         });
     }
 
     function handleReset(event) {
         event.preventDefault();
-        setText('');
-        setWord(0);
+        if(props.text!==""){
+            document.querySelector("#alert_box").classList.remove("hidden");
+        }
     }
-
-
-    
 
 
     return(
@@ -54,7 +50,7 @@ export default function TextAnalyse(props) {
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <label htmlFor="comment" className="sr-only">Your comment</label>
                 {/* value is set as text , when text state is changed the value automatically gets updated */}
-                <textarea onChange={handleChange} value={text} id="comment" rows="16" className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write here..." required></textarea>
+                <textarea onChange={handleChange} value={props.text} id="comment" rows="16" className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write here..." required></textarea>
             </div>
 
             <div className="flex items-center justify-start gap-2 px-3 py-2 border-t dark:border-gray-600">
@@ -77,21 +73,24 @@ export default function TextAnalyse(props) {
         </form>
         <div className="info border-4 p-2 w-60">
 
-            {word} words , {text.length} characters <br/>
+            {word} words , {props.text.length} characters <br/>
             {Math.floor((word * 0.008)*100)/100} minutes requied to read
 
         </div>
         <div className="preview w-3/4 ">
             <h1 className="text-3xl py-4 underline">Preview</h1>
             <pre>
-            {text}
+            {props.text}
             </pre>
         </div>
-
         </div>
     );
 }
 
+export function Reset() {
+    props.setText('');
+    setWord(0);
+}
 
 
 
