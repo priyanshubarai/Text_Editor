@@ -14,7 +14,6 @@ import Contact from './components/contact/Contact';
 
 export default function App() {
 
-  const [text , setText] = useState('');      //initiating a state hook
   
   //Routing
   const router = createBrowserRouter([
@@ -22,7 +21,7 @@ export default function App() {
       path: "/",
       element: <Layout/>,
       children : [
-        {path:"" , element: <TextAnalyse text={text} setText = {setText}/>},
+        {path:"" , element: <TextAnalyse />},
         {path:"/about" , element: <About/>},
         {path:"/contact" , element: <Contact/>},
         {path:"/join" , element: <Join/>},
@@ -32,20 +31,20 @@ export default function App() {
 
   function Layout() {
     return(
-      <>
-        <Alert setText = {setText}/>
+      <div className='dark:bg-slate-900 dark:text-white min-h-screen'>
+        <Alert/>
         <Navbar children={<Header/>}/>
         <main className='my-3'>
           <Outlet />
         </main>
-      </>
+      </div>
     );
   }
 
   return (
     <RouterProvider router={router}>
       
-    <div className='dark:bg-slate-900 dark:text-white min-h-screen'>
+    <div >
       <Layout/>
     </div>
 

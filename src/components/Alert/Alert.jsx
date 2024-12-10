@@ -9,7 +9,7 @@ export default function Alert(props) {
   }
 
   function Reset() {
-      props.setText('');
+      document.querySelector("#comment").value = '';
       document.querySelector("#alert_box").classList.add("hidden");
   }
 
