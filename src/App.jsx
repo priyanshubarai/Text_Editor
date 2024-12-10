@@ -15,7 +15,8 @@ import Contact from './components/contact/Contact';
 export default function App() {
 
   const [text , setText] = useState('');      //initiating a state hook
-
+  
+  //Routing
   const router = createBrowserRouter([
     {
       path: "/",
