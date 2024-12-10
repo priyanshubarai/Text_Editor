@@ -1,7 +1,8 @@
 import "./Navbar.css"
 import Switch from "../switch/Switch"
+import { Children } from "react";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <div id="navbar" className="">
       <nav class="h-24 border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -38,6 +39,7 @@ export default function Navbar() {
               />
             </svg>
           </button>
+          {props.children}
           <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
             <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
               <li>

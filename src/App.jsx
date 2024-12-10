@@ -15,12 +15,19 @@ export default function App() {
   return (
     <div className='dark:bg-slate-900 dark:text-white min-h-screen'>
     <Alert setText = {setText}/>
-    <Navbar/>
-    <Header/>
-    <TextAnalyse text={text} setText = {setText}/>
+    <Navbar children={<Header/>}/>
+    <main className='my-3'>
+      <TextAnalyse text={text} setText = {setText}/>
+    </main>
     </div>
   );
 }
 
 
+function Layout() {
+  return(
+    <>
 
+    </>
+  );
+}
